@@ -16,6 +16,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\SmartWebScraper.Domain\SmartWebScraper.Domain.csproj" />
+    <ProjectReference Include="..\SmartWebScraper.Infrastructure\SmartWebScraper.Infrastructure.csproj" />
   </ItemGroup>
 
 </Project>

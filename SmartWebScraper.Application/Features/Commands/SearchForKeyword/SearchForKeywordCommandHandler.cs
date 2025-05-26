@@ -1,6 +1,6 @@
 ﻿using FluentValidation;
 using MediatR;
-using SmartWebScraper.Application.Services;
+using SmartWebScraper.Infrastructure.Services;
 using SmartWebScraper.Domain.Utilities;
 using System.Net;
 
