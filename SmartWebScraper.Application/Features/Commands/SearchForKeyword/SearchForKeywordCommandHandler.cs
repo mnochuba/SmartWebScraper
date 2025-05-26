@@ -30,7 +30,6 @@ public class SearchForKeywordCommandHandler(IHttpClientFactory httpClientFactory
         }
     }
 
-    //private readonly IUnitOfWork _unitOfWork = unitOfWork;
     private readonly IValidator<SearchForKeywordCommand> _validator = validator;
     private readonly IHttpClientFactory _httpClientFactory = httpClientFactory;
 }

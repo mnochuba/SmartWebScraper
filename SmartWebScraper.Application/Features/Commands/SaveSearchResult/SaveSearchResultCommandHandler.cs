@@ -19,7 +19,9 @@ public class SaveSearchResultCommandHandler(IUnitOfWork unitOfWork, IValidator<S
 
         try
         {
-            var searchRsult = new SearchResult(request.SearchPhrase, request.Positions, request.URLs, request.TargetUrl);
+            var positions = request.Rankings.Keys.ToList();
+            var urls = request.Rankings.Values.ToList();
+            var searchRsult = new SearchResult(request.SearchPhrase, positions, urls, request.TargetUrl);
             await _unitOfWork.SearchResultRepository.AddAsync(searchRsult, cancellationToken);
 
             var result = await _unitOfWork.SaveChangesAsync(cancellationToken);

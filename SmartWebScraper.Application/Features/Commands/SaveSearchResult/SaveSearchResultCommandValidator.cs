@@ -15,9 +15,9 @@ public class SaveSearchResultCommandValidator : AbstractValidator<SaveSearchResu
             .Must(url => Uri.IsWellFormedUriString("https://" + url, UriKind.Absolute))
             .WithMessage("Target URL must be valid.");
 
-        RuleFor(x => x.Positions)
+        RuleFor(x => x.Rankings)
             .NotNull().WithMessage("Positions are required.")
-            .Must(p => p.All(pos => pos > 0 && pos <= 100))
+            .Must(p => p.All(pos => pos.Key > 0 && pos.Key <= 100))
             .WithMessage("Positions must be between 1 and 100.");
     }
 }

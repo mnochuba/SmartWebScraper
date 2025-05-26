@@ -1,5 +1,6 @@
 ﻿using MediatR;
 using Microsoft.AspNetCore.Mvc;
+using SmartWebScraper.Application.Features.Commands.SaveSearchResult;
 using SmartWebScraper.Application.Features.Commands.SearchForKeyword;
 using SmartWebScraper.Domain.Utilities;
 
@@ -12,7 +13,16 @@ public class SearchController : BaseController
     }
 
     [HttpPost]
+    [Route("keyword-search")]
     public async Task<IActionResult> SearchForKeyWord(SearchForKeywordCommand request)
+    {
+        var response = await Mediator.Send(request);
+        return Ok(response);
+    }
+
+    [HttpPost]
+    [Route("save-results")]
+    public async Task<IActionResult> SaveSearchResults(SaveSearchResultCommand request)
     {
         var response = await Mediator.Send(request);
         return Ok(response);
