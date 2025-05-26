@@ -1,11 +1,13 @@
 using SmartWebScraper.API;
+using SmartWebScraper.Application;
 using SmartWebScraper.Persistence;
+using System.Text.Json.Serialization;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddOpenApi();
-//builder.Services.RegisterApplicationServices();
+builder.Services.RegisterApplicationServices();
 builder.Services.RegisterPersistenceServices(builder.Configuration);
 
 // Add Swagger services.
@@ -14,11 +16,13 @@ builder.Services.AddSwaggerGen(c =>
 {
     c.SwaggerDoc("v1", new() { Title = "SmartWebScraper API", Version = "v1" });
 });
+builder.Services.AddControllers().AddJsonOptions(
+                options =>
+                {
+                    options.JsonSerializerOptions.Converters.Add(new JsonStringEnumConverter());
+                });
 
 var app = builder.Build();
-
-app.ApplyDbMigrations();
-
 
 //Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
@@ -29,5 +33,14 @@ if (app.Environment.IsDevelopment())
 }
 
 app.UseHttpsRedirection();
+app.UseRouting();
+
+app.UseCors(x => x.AllowAnyOrigin()
+    .AllowAnyMethod()
+    .AllowAnyHeader()
+);
+
+app.MapControllers();
+app.ApplyDbMigrations();
 
 app.Run();

@@ -1,6 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using SmartWebScraper.Application.Contracts;
 
 namespace SmartWebScraper.Persistence;
 public static class PersistenceServiceRegistration
@@ -9,14 +10,15 @@ public static class PersistenceServiceRegistration
     {
         var connectionString = GetConnectionString(configuration);
         services.AddDbContext<AppDbContext>(options => options.UseSqlServer(connectionString));
+        services.AddScoped<IUnitOfWork, UnitOfWork>();
         return services;
     }
 
     private static string? GetConnectionString(IConfiguration configuration)
     {
-        var connectionString = "Server = localhost\\SQLEXPRESS; Database= SmartWebScrapperDb; Integrated Security = True; TrustServerCertificate=true;";
-            //Environment.GetEnvironmentVariable("SeoWebScrapperConnection") ?? // For more secure handling of connection strings
-            //configuration.GetConnectionString("DefaultConnection"); // Fallback to appsettings.json default connection string for testing or development
+        var connectionString = 
+            Environment.GetEnvironmentVariable("SmartWebScraperConnection") ?? // For more secure handling of connection strings
+            configuration.GetConnectionString("DefaultConnection"); // Fallback to appsettings.json default connection string for testing or development
         return connectionString;
     }
 }
