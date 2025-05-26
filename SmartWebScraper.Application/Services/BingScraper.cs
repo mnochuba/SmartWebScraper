@@ -1,4 +1,4 @@
-﻿using SmartWebScraper.Application.Contracts;
+﻿using SmartWebScraper.Domain.Contracts;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -8,8 +8,8 @@ using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Web;
 
-namespace SmartWebScraper.Infrastructure.Services;
-public class BingScraper : ISearchEngineScraper
+namespace SmartWebScraper.Application.Services;
+public class BingScraper //: ISearchEngineScraper
 {
     private readonly HttpClient _httpClient;
     private readonly int _resultCount = 100;
@@ -19,7 +19,7 @@ public class BingScraper : ISearchEngineScraper
         _httpClient.BaseAddress = new Uri("https://www.bing.com/");
     }
 
-    public async Task<Dictionary<int, string>> GetSearchResultPositionsAsync(string searchPhrase, string targetUrl)
+    public async Task<Dictionary<int, string>> GetSearchResultPositionsAsync(string searchPhrase, string targetUrl, CancellationToken cancellationToken)
     {
 
         string bingSearchUrl = $"http://www.bing.com/search?q={HttpUtility.UrlEncode(searchPhrase)}&count={_resultCount}";

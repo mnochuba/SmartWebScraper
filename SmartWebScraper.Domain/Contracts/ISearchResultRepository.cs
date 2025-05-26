@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace SmartWebScraper.Application.Contracts;
+namespace SmartWebScraper.Domain.Contracts;
 public interface ISearchResultRepository : IRepository<SearchResult>
 {
 }

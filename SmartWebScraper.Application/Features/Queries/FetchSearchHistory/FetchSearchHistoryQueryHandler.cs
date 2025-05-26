@@ -1,6 +1,6 @@
 ﻿using MediatR;
-using SmartWebScraper.Application.Contracts;
-using SmartWebScraper.Application.Utilities;
+using SmartWebScraper.Domain.Contracts;
+using SmartWebScraper.Domain.Utilities;
 using SmartWebScraper.Domain;
 using System.Net;
 

@@ -1,5 +1,5 @@
 ﻿using MediatR;
-using SmartWebScraper.Application.Utilities;
+using SmartWebScraper.Domain.Utilities;
 
 namespace SmartWebScraper.Application.Features.Commands.SaveSearchResult;
 public class SaveSearchResultCommand() : IRequest<OperationResult<int>>

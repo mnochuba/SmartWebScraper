@@ -1,6 +1,6 @@
 ﻿using System.Net;
 
-namespace SmartWebScraper.Application.Utilities;
+namespace SmartWebScraper.Domain.Utilities;
 public class OperationResult
 {
     internal OperationResult() { }

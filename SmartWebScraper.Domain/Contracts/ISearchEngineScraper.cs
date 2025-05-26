@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace SmartWebScraper.Application.Contracts;
+namespace SmartWebScraper.Domain.Contracts;
 public interface ISearchEngineScraper
 {
     Task<Dictionary<int, string>> GetSearchResultPositionsAsync(string searchPhrase, string targetUrl);

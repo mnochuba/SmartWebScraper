@@ -1,6 +1,6 @@
-﻿using SmartWebScraper.Application.Utilities;
+﻿using SmartWebScraper.Domain.Utilities;
 
-namespace SmartWebScraper.Application.Contracts;
+namespace SmartWebScraper.Domain.Contracts;
 public interface IUnitOfWork
 {
     ISearchResultRepository SearchResultRepository { get; }

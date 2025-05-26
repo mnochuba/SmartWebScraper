@@ -5,7 +5,7 @@ using System.Linq.Expressions;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace SmartWebScraper.Application.Contracts;
+namespace SmartWebScraper.Domain.Contracts;
 public interface IRepository<TEntity> where TEntity : class
 {
     Task<IReadOnlyList<TEntity>> GetAllsync(CancellationToken cancellationToken = default);

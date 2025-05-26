@@ -1,5 +1,7 @@
 using SmartWebScraper.API;
+using SmartWebScraper.API.Controllers;
 using SmartWebScraper.Application;
+using SmartWebScraper.Application.Features.Commands.SaveSearchResult;
 using SmartWebScraper.Persistence;
 using System.Text.Json.Serialization;
 
@@ -9,6 +11,10 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddOpenApi();
 builder.Services.RegisterApplicationServices();
 builder.Services.RegisterPersistenceServices(builder.Configuration);
+
+builder.Services.AddMediatR(cfg => cfg.RegisterServicesFromAssemblies(
+typeof(SaveSearchResultCommand).Assembly,
+typeof(SearchController).Assembly));
 
 // Add Swagger services.
 builder.Services.AddEndpointsApiExplorer();

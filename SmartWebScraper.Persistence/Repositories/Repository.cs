@@ -1,5 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using SmartWebScraper.Application.Contracts;
+using SmartWebScraper.Domain.Contracts;
 using System;
 using System.Collections.Generic;
 using System.Linq;

@@ -1,0 +1,23 @@
+services:
+  smartwebscraper.api:
+    image: ${DOCKER_REGISTRY-}smartwebscraperapi
+    build:
+      context: .
+      dockerfile: SmartWebScraper.API/Dockerfile
+    depends_on:
+          - smartwebscraper.db 
+    env_file: .env
+    environment:
+      - ConnectionStrings__DefaultConnection=$ConnectionString
+
+  smartwebscraper.db:
+    image: mcr.microsoft.com/mssql/server
+    container_name: webscraperdb
+    hostname: smartwebscraper.db 
+    env_file: .env
+    environment:
+      - ACCEPT_EULA=Y
+      - MSSQL_SA_PASSWORD=$MSSQL_SA_PASSWORD 
+      - MSSQL_DB_NAME=SmartWebScrapperDb
+    ports:
+      - 1401:1433

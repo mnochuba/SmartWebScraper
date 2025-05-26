@@ -1,4 +1,4 @@
-﻿using SmartWebScraper.Application.Contracts;
+﻿using SmartWebScraper.Domain.Contracts;
 using SmartWebScraper.Domain;
 
 namespace SmartWebScraper.Persistence.Repositories;
