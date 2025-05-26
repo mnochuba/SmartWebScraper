@@ -1,0 +1,6 @@
+@SmartWebScraper.API_HostAddress = http://localhost:5236
+
+GET {{SmartWebScraper.API_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
