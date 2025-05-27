@@ -9,6 +9,7 @@ services:
     env_file: .env
     environment:
       - ConnectionStrings__DefaultConnection=$ConnectionString
+    restart: unless-stopped
 
   smartwebscraper.db:
     image: mcr.microsoft.com/mssql/server
