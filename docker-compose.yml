@@ -21,3 +21,14 @@ services:
       - MSSQL_DB_NAME=SmartWebScrapperDb
     ports:
       - 1401:1433
+
+  smartwebscraper.client:
+    image: "node:20-alpine"
+    working_dir: /app
+    command: sh -c "npm ci && npm start -- --host 0.0.0.0 --disable-host-check"
+    ports:
+      - 4200:4200
+    volumes:
+      - ./SmartWebScraper.Client:/app
+    environment:
+      - NODE_ENV=development
