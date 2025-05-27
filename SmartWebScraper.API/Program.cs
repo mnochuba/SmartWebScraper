@@ -9,12 +9,10 @@ var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddOpenApi();
+//builder.Services.RegisterApiServices();
 builder.Services.RegisterApplicationServices();
 builder.Services.RegisterPersistenceServices(builder.Configuration);
 
-builder.Services.AddMediatR(cfg => cfg.RegisterServicesFromAssemblies(
-typeof(SaveSearchResultCommand).Assembly,
-typeof(SearchController).Assembly));
 
 // Add Swagger services.
 builder.Services.AddEndpointsApiExplorer();

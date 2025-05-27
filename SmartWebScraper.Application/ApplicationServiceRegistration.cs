@@ -9,7 +9,6 @@ public static class ApplicationServiceRegistration
     public static IServiceCollection RegisterApplicationServices(this IServiceCollection services)
     {
         services.AddMediatR(cfg => cfg.RegisterServicesFromAssemblyContaining<SaveSearchResultCommand>());// Register MediatR
-
         services.AddValidatorsFromAssemblyContaining<SaveSearchResultCommandValidator>(); // Register FluentValidation validators
         services.AddHttpClient(); 
         return services;

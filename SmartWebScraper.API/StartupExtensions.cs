@@ -1,4 +1,7 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using FluentValidation;
+using Microsoft.EntityFrameworkCore;
+using SmartWebScraper.API.Controllers;
+using SmartWebScraper.Application.Features.Commands.SaveSearchResult;
 using SmartWebScraper.Persistence;
 using System;
 
@@ -26,5 +29,12 @@ public static class StartupExtensions
                 throw;
             }
         }
+    }
+
+    public static IServiceCollection RegisterApiServices(this IServiceCollection services)
+    {
+        services.AddMediatR(cfg => cfg.RegisterServicesFromAssemblies
+        (typeof(SaveSearchResultCommand).Assembly, typeof(SearchController).Assembly));
+        return services;
     }
 }

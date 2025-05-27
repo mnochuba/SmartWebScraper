@@ -36,7 +36,7 @@ public class BingScraper //: ISearchEngineScraper
                 myResult[kvp.Key + i - 1] = kvp.Value;
             }
 
-            Task.Delay(500, cancellationToken).Wait(); // Delay to avoid hitting the server too fast
+            Task.Delay(500, cancellationToken).Wait(cancellationToken); // Delay to avoid hitting the server too fast
         }
 
         return myResult;
