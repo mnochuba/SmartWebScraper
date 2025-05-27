@@ -14,13 +14,30 @@ public class BingScraper //: ISearchEngineScraper
 
     public async Task<Dictionary<int, string>> GetSearchResultPositionsAsync(string searchPhrase, string targetUrl, CancellationToken cancellationToken)
     {
+        _httpClient.DefaultRequestHeaders.Clear();
+        _httpClient.DefaultRequestHeaders.Add("User-Agent", "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/122.0.0.0 Safari/537.36");
 
-        string bingSearchUrl = $"http://www.bing.com/search?q={HttpUtility.UrlEncode(searchPhrase)}&count={_resultCount}";
-        _httpClient.DefaultRequestHeaders.Add("User-Agent", "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/70.0.3538.102 Safari/537.36");
+        Dictionary<int, string> tempResult = [];
+        Dictionary<int, string> myResult = [];
 
-        var response = await _httpClient.GetStringAsync(bingSearchUrl);
+        for (int i = 1; i < _resultCount; i += 10)
+        {
+            string bingSearchUrl = $"https://www.bing.com/search?q={HttpUtility.UrlEncode(searchPhrase)}&first={i}";
 
-        var myResult = ParseBingResults(response, targetUrl);
+            var request = new HttpRequestMessage(HttpMethod.Get, bingSearchUrl);
+
+            var response = await _httpClient.SendAsync(request);
+            string html = await response.Content.ReadAsStringAsync();
+
+            tempResult = ParseBingResults(html, targetUrl);
+
+            foreach (var kvp in tempResult)
+            {
+                myResult[kvp.Key + i - 1] = kvp.Value;
+            }
+
+            Task.Delay(500, cancellationToken).Wait(); // Delay to avoid hitting the server too fast
+        }
 
         return myResult;
     }
