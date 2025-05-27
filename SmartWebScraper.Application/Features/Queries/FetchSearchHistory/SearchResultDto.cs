@@ -2,8 +2,7 @@
 public class SearchResultDto
 {
     public string SearchPhrase { get; set; } = default!;
-    public string? Positions { get; set; }
-    public string? URLs { get; set; }
+    public Dictionary<int, string> Rankings { get; set; } = [];
     public string TargetUrl { get; set; } = default!;
     public DateTime SearchDate { get; set; }
 }

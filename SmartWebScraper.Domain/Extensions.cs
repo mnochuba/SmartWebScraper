@@ -44,4 +44,18 @@ public static class Extensions
                                 .Select(num => num!.Value)
                                 .ToList();
     }
+
+    /// <summary>
+    /// Splits a concatenated string into a collection of strings, using the specified separator.
+    /// </summary>
+    /// <param name="concatenatedString">String to split</param>
+    /// <param name="separatorChar">Specified separator character</param>
+    /// <returns></returns>
+    public static IEnumerable<string> SplitIntoStringCollection(this string concatenatedString, char separatorChar = ',')
+    {
+        return string.IsNullOrWhiteSpace(concatenatedString) ? []
+            : concatenatedString.Split([separatorChar], StringSplitOptions.RemoveEmptyEntries)
+                                .Select(item => item.Trim())
+                                .ToList();
+    }
 }

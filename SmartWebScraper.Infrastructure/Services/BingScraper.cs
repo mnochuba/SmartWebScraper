@@ -12,15 +12,16 @@ public class BingScraper //: ISearchEngineScraper
         _httpClient.BaseAddress = new Uri("https://www.bing.com/");
     }
 
-    public async Task<Dictionary<int, string>> GetSearchResultPositionsAsync(string searchPhrase, string targetUrl, CancellationToken cancellationToken)
+    public async Task<Dictionary<int, string>> GetSearchResultPositionsAsync(string searchPhrase, string targetUrl, CancellationToken cancellationToken, int? maxResults = null)
     {
         _httpClient.DefaultRequestHeaders.Clear();
         _httpClient.DefaultRequestHeaders.Add("User-Agent", "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/122.0.0.0 Safari/537.36");
 
+        int resultCount = maxResults ?? _resultCount;
         Dictionary<int, string> tempResult = [];
         Dictionary<int, string> myResult = [];
 
-        for (int i = 1; i < _resultCount; i += 10)
+        for (int i = 0; i < resultCount; i += 10)
         {
             string bingSearchUrl = $"https://www.bing.com/search?q={HttpUtility.UrlEncode(searchPhrase)}&first={i}";
 
@@ -42,7 +43,7 @@ public class BingScraper //: ISearchEngineScraper
         return myResult;
     }
 
-    static Dictionary<int, string> ParseBingResults(string html, string targetUrl)
+    private Dictionary<int, string> ParseBingResults(string html, string targetUrl)
     {
         var resultDictionary = new Dictionary<int, string>();
         string[] resultBlocks = html.Split(["<li class=\"b_algo\""], StringSplitOptions.RemoveEmptyEntries);
