@@ -2,13 +2,7 @@ services:
   smartwebscraper.api:
     environment:
       - ASPNETCORE_ENVIRONMENT=Development
-      - ASPNETCORE_HTTP_PORTS=8080
-      - ASPNETCORE_HTTPS_PORTS=8081
+      - ASPNETCORE_URLS=http://+:8080
+      - DOTNET_GENERATE_ASPNET_CERTIFICATE=false
     ports:
-      - "8080"
-      - "8081"
-    volumes:
-      - ./data/usersecrets:/home/app/.microsoft/usersecrets:ro
-      - ./data/usersecrets:/root/.microsoft/usersecrets:ro
-      - ./data/https:/home/app/.aspnet/https:ro
-      - ./data/https:/root/.aspnet/https:ro
+      - "8080:8080"
