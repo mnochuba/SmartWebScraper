@@ -22,7 +22,7 @@ MSSQL_SA_PASSWORD=your_password
 ConnectionString = "Server=smartwebscraper.db;Initial Catalog=SmartWebScrapperDb;Persist Security Info=False;User ID=sa;Password=your_password;MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=True;Connection Timeout=30;"
 ```
 
-3. Open a terminal in the project root directory or in VS code
+3. Open a terminal in the project root directory or in VS code (CLI recommended)
 4. Run docker-compose down
 5. Run docker-compose up -d --build --force-recreate
 6. You might need to wait for a few minutes for all the containers to spin up (client, server, and db), and install all dependencies
@@ -45,6 +45,7 @@ ConnectionString = "Server=smartwebscraper.db;Initial Catalog=SmartWebScrapperDb
 * Adding AI functionalities to analyse the rankings with the search results and recommend SEO adjustments
 * Support for other search engines.
 * Visualisation of the ranking over time.
+* Result cashing to improve performance for similar searches
 
 ### Additional Notes:
 * This project could be achieved using minimal API due to its magnitude, but I have used a full controller-based API to demonstrate some architecture and design considerations.
