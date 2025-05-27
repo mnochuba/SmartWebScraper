@@ -15,13 +15,13 @@ The image below shows the UI design. You enter the keyword(s) on the left and se
 
 ### How to set up and run the application
 1. Create a .env file in the project root (same location as docker-compose and .sln)
-2. Paste the following into it (replace "your_password" with a strong password in both the password env variable and connection string):
+2. Paste the following into it (replace "YourStr0ngP@ssword" with a strong password in both the password env variable and connection string):
 
 ```
-MSSQL_SA_PASSWORD=your_password
-ConnectionString = "Server=smartwebscraper.db;Initial Catalog=SmartWebScrapperDb;Persist Security Info=False;User ID=sa;Password=your_password;MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=True;Connection Timeout=30;"
+MSSQL_SA_PASSWORD=YourStr0ngP@ssword
+ConnectionString = "Server=smartwebscraper.db;Initial Catalog=SmartWebScrapperDb;Persist Security Info=False;User ID=sa;Password=YourStr0ngP@ssword;MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=True;Connection Timeout=30;"
 ```
-
+(Note: Weak passwords like 'password' will fail)
 3. Open a terminal in the project root directory or in VS code (CLI recommended)
 4. Run docker-compose down
 5. Run docker-compose up -d --build --force-recreate
