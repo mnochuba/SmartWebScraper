@@ -23,8 +23,11 @@ ConnectionString = "Server=smartwebscraper.db;Initial Catalog=SmartWebScrapperDb
 3. Open a terminal in the project root directory or in VS code
 4. Run docker-compose down
 5. Run docker-compose up -d --build --force-recreate
-6. You might need to wait for a few minutes for all the containers to spin up (client, server, and db)
-7. When it is fully up, you can access the client on localhost:4200. The server is also accessible on port 8080 (localhost:8080/swagger to view API documentation)
+6. You might need to wait for a few minutes for all the containers to spin up (client, server, and db), and install all dependencies
+7. The image below (from docker logs) indicates that the client is ready:
+   ![image](https://github.com/user-attachments/assets/11a32e20-af17-4b92-a35f-362abb7cd0ae)
+
+9. When it is fully up, you can access the client on localhost:4200. The server is also accessible on port 8080 (localhost:8080/swagger to view API documentation)
 
 ### Core Libraries and Architecture
 * UI - Angular, HTML, CSS, Typescript
