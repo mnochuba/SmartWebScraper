@@ -1,0 +1,49 @@
+<style>
+  :host {
+    @apply h-full flex flex-col;
+  }
+</style>
+
+<section class="flex-grow grid grid-cols-12 gap-6">
+  <div class="col-span-3 rounded-xl bg-white shadow-sm">
+    <div class="w-full h-full flex flex-col">
+      <h1 class=" px-5 py-4 text-xl font-bold border-b border-gray-200 text-gray-700 flex items-center gap-2">
+        <span>History</span>
+      </h1>
+      <ul class="flex-grow overflow-y-auto flex-col gap-2">
+        <li class="flex flex-col cursor-pointer border-b border-gray-200 p-5" *ngFor="let item of history" (click)="selectResult(item)">
+          <span>{{ item.targetUrl }}</span>
+          <span class="text-gray-500 text-sm my-1">{{ item.searchPhrase }}</span>
+          <span class="text-gray-400 text-xs">{{ item.searchDate | date:'dd/MM/yyyy' }}</span>
+        </li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="col-span-9 rounded-xl bg-white shadow-sm flex flex-col">
+    <h1 class=" px-5 py-4 text-xl font-bold border-b border-gray-200 text-gray-700 flex items-center gap-2">
+      <span>Results</span>
+    </h1>
+
+    <div class="flex-grow flex flex-col">
+      <div class="p-5">
+        <div class="grid grid-cols-3 gap-4">
+          <div
+            *ngFor="let key of getObjectKeys(results)"
+            class="p-4 border border-gray-200 rounded-lg"
+          >
+            <h2 class="text-2xl font-bold mb-2">{{ key }}</h2>
+            <p class="text-gray-600 line-clamp-3 text-wrap whitespace-pre-wrap" [title]="results[key]">{{ results[key] }}</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="my-auto flex justify-center items-center" *ngIf="getObjectKeys(results).length === 0">
+        <p class="flex flex-col items-center gap-2">
+          <i class="ri-seedling-fill text-8xl text-gray-100"></i>
+          <span>Nothing here yet. Select a result to view</span>
+        </p>
+      </div>
+    </div>
+  </div>
+</section>

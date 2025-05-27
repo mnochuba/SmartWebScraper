@@ -1,0 +1,12 @@
+/* You can add global styles to this file, and also import other style files */
+@use 'remixicon/fonts/remixicon.css';
+@use "tailwindcss";
+@plugin "tailwindcss-primeui";
+
+:root {
+  --font-family: 'Bricolage Grotesque', sans-serif;
+}
+
+* {
+  font-family: var(--font-family);
+}
