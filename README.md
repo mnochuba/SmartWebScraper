@@ -2,12 +2,12 @@
 This project is designed to help with SEO analysis using popular search engines like Google and Bing.
 
 ### Overview:
-The image below shows the UI design. You enter the keyword(s) on the left and search. Rankings show on the right pane. You can then save the result or fetch search history
+The image below shows the UI design. You enter the keyword(s) on the left and search. Rankings show on the right pane. You can then save the result or fetch the search history
 <img width="1268" alt="Screenshot 2025-05-27 at 12 44 15 PM 1" src="https://github.com/user-attachments/assets/611b89d0-d3f7-4910-97a4-65fd787b95cd" />
 
 ### API Characteristics
 * The API exposes three endpoints: Keyword search, save results, and search history
-* **keyword-search** takes a search phrase and a target url, carries out the search, scrapes the result, and returns a collecion of rankings and corresponding URLs
+* **keyword-search** takes a search phrase and a target URL, carries out the search, scrapes the result, and returns a collection of rankings and corresponding URLs
 * **save-results** allows the user to optionally save the results of their search
 * **search-hisory** fetches the history of previous searches, and displays them on the UI. Clicking a specific search expands the rankings for that search on the right pane.
 
@@ -37,8 +37,9 @@ ConnectionString = "Server=smartwebscraper.db;Initial Catalog=SmartWebScrapperDb
 * **Type in a keyword and press Enter** to add it (You can add multiple keywords)
 * Click 'Search' to carry out the web scraping
 * You might need to wait for a few seconds for the results to show (a deliberate time delay of 0.5 seconds is added for each page in the API, to obtain the correct result)
-* To get the search history, you can click on the 'History' button and the history appars on the left.
+* To get the search history, you can click on the 'History' button, and the history appears on the left.
 * Select any history entry to expand it on the right.
+* You can test with 'www.gov.uk' as the URL and 'land registry search' as the search phrase. (I couldn't find any top 100 rankings for infotrack.co.uk on Bing)
 
 ### Core Libraries and Design
 * UI - Angular, HTML, SCSS, TypeScript
